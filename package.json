@@ -1,0 +1,30 @@
+{
+  "name":"nomad",
+  "description":"file system walker",
+  "version":"0.0.1",
+  "homepage":"http://github.com/personify/nomad",
+  "repository":"git://github.com/personify/nomad.git",
+  "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+  "main":"./index.js",
+
+  "dependencies":{
+    "async":"*",
+    "coffee-script":"*"
+  },
+  "devDependencies":{
+    "mocha":"*",
+    "should":"*"
+  },
+  "engines":{
+    "node":">= 0.4.0"
+  },
+  "scripts":{
+    "test":"mocha"
+  },
+  "licenses":[
+    {
+      "type":"MIT",
+      "url":"http://github.com/wearefractal/nomad/raw/master/LICENSE"
+    }
+  ]
+}
