@@ -1,36 +1,37 @@
-# Nomad walks the file system.  Like a boss.
+# Provider handles dependency injection on a project wide basis.
 #
-# Doesn't matter if it's a real file system, a file slug, version control, or a
-# remote server.  Nomad is still in training, so he needs an accessStrategy and
-# credentials.  In a future version, Nomad will simply kick in the door.
+# In development this lets you easily swap out third party dependencies.  In
+# testing, this lets you swap in mock dependencies so that you can isolate the
+# code you're testing.
+#
+# In order to do this it must assume responsibility for the application's
+# execution.  Provider should therefore be referenced in package.json:main and
+# the dependencyConfiguration should include an entry point.
 #
 # Contract:
 #
 #   given:
-#     accessStrategies
-#     credentials
 #
 #   services:
 #     loadApp:
 #       in:
-#         accessStrategy: String
-#         appRoot: String
+#         dependencyConfiguration: fileName
+#         applicationStructure: Nomad root node
 #
 #       out:
-#         rootNode: FsNode #object
+#         app: Executable #app.execute()
 #
 given = {}
 
 services =
-  loadApp: (accessStrategy, appRoot, next) ->
-    return next "#{accessStrategy} not supported" unless accessStrategy in @given.accessStrategies.keys()
+  setup: (dependencies, appRoot, next) ->
+    app =
+      execute: () -> return null
 
-    fs = accessStrategies[accessStrategy]
-    fs.load appRoot, next
+    next null, app
 
 loader = (dependencies) ->
   @given = dependencies if dependencies?
   return services
-
 
 module.exports = loader

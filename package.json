@@ -1,13 +1,14 @@
 {
-  "name":"nomad",
-  "description":"file system walker",
+  "name":"provider",
+  "description":"Dependency injection framework",
   "version":"0.0.1",
-  "homepage":"http://github.com/personify/nomad",
-  "repository":"git://github.com/personify/nomad.git",
+  "homepage":"http://github.com/personify/provider",
+  "repository":"git://github.com/personify/provider.git",
   "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
   "main":"./index.js",
 
   "dependencies":{
+    "sprock":"*",
     "async":"*",
     "coffee-script":"*"
   },
@@ -24,7 +25,7 @@
   "licenses":[
     {
       "type":"MIT",
-      "url":"http://github.com/wearefractal/nomad/raw/master/LICENSE"
+      "url":"http://github.com/wearefractal/provider/raw/master/LICENSE"
     }
   ]
 }

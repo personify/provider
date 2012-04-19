@@ -2,11 +2,11 @@
 
 <table>
 <tr>
-<td>Package</td><td>Nomad</td>
+<td>Package</td><td>Provider</td>
 </tr>
 <tr>
 <td>Description</td>
-<td>File system walker. Used by Personify framework.</td>
+<td>Handles dependency injection on a project wide basis.</td>
 </tr>
 <tr>
 <td>Node Version</td>
@@ -14,22 +14,23 @@
 </tr>
 </table>
 
+## Description
+
+In development this lets you easily swap out third party dependencies.  In
+testing, this lets you swap in mock dependencies so that you can isolate the
+code you're testing.
+
+In order to do this Provider must assume responsibility for the application's
+execution.  Provider should therefore be referenced in package.json:main and
+the dependencyConfiguration should include an entry point.
+
 ## Usage
 
 ```coffee-script
-nomad = require 'nomad'
+provider = require 'provider'
 
-nomad.loadApp 'fs', './example', (err, app) ->
-  app.get "pathspec", (err, file) ->
-    console.log file.modified
-    console.log file.isDirectory
-
-    if file.isFile
-      file.readAll (err, doc) ->
-        console.log doc
-
-  app.readFile "someFile", (err, doc) ->
-    console.log doc
+provider.setup dependencies, appRoot, (err, app) ->
+  app.execute()
 
 ```
 
